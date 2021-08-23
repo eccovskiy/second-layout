@@ -122,6 +122,8 @@ for (let i = 1; i < 10; i++) {
     console.log(i);
 }*/
 
+/*Функции*/
+
 /*let num = 20;
 
 function showFirstMassage(text, arg) {
@@ -185,3 +187,166 @@ const test = '12.2px';
 
 console.log(parseInt(test));
 console.log(parseFloat(test));*/
+
+/*function first() {
+    setTimeout(function() {
+        console.log(1);
+    }, 500);
+}
+
+function second() {
+    console.log(2);
+}
+
+first();
+second();
+
+function learnJS(lang, callback) {
+    console.log(`Я учу: ${lang}`);
+    callback();
+}
+
+function done() {
+    console.log('I done this lesson');
+}
+
+learnJS('JS', done);*/
+
+/*Сравнение объектов*/
+
+// let options = {
+//     name: 'test',
+//     width: 1024,
+//     height: 1024,
+//     colors: {
+//         border: 'blue',
+//         bg: 'red'
+//     },
+//     makeTest: function() {
+//         console.log('Test');
+//     }
+// };
+
+// let options2 = {
+//     name: 'test',
+//     width: 1024,
+//     height: 1024,
+//     colors: {
+//         border: 'blue',
+//         bg: 'red'
+//     },
+//     makeTest: function() {
+//         console.log('Test');
+//     }
+// };
+
+// options.makeTest();
+
+// console.log(options.name == options2.name);
+
+// const {border, bg} = options.colors;
+
+// console.log(border);
+
+// console.log(Object.keys(options).length);
+
+// console.log(options['colors']['border']);
+
+// delete options.name;
+// delete options.height;
+
+// console.log(options);
+
+// let counter = 0;
+
+// for (let key in options) {
+//     if (typeof(options[key]) == 'object') {
+//         for (let i in options[key]) {
+//             console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+//             counter++;
+//         }
+//     } else {
+//         console.log(`Свойство ${key} имеет значение ${options[key]}`);
+//         counter++;
+//     }
+// }
+
+// console.log(counter);
+
+/*Function*/
+
+// let num = 20;
+
+// function showFirstMassage(text) {
+//     console.log(text);
+//     let num = 10;
+//     console.log(num);
+// }
+
+// showFirstMassage('Hello world');
+// console.log(num);
+
+// function calc(a, b) {
+//     return (a + b);
+// }
+
+// console.log(calc(5, 8));
+
+// function ret() {
+//     let num = 50;
+//     return num;
+// }
+
+// const anotherNum = ret();
+
+// console.log(anotherNum);
+
+// let logger = function() {
+//     console.log('Hello');
+// };
+
+// logger();
+
+// const calculator = (a, b) => {
+//     return a + b
+// };
+
+// console.log(calculator(5, 8));
+
+/*Методы строк и чисел*/
+
+// let str = 'test';
+// let arr = [1, 2, 4];
+
+// console.log(str.toUpperCase());
+// console.log(str.toLowerCase());
+// console.log(str);
+
+// let str2 = str.toUpperCase();
+
+// console.log(str2);
+
+// let fruit = 'Some fruit';
+
+// // console.log(fruit.indexOf('q'));
+
+// if (fruit.indexOf('fruit') == 5) {
+//     console.log('Block');
+// } else {
+//     console.log('Good');
+// }
+
+// const logg = 'Hello World';
+
+// console.log(logg.slice(6, 11));
+// console.log(logg.substring(6, 11));
+// console.log(logg.substr(6, 5));
+
+// const num = 12.2;
+
+// console.log(Math.round(num));
+
+// const test = '12.2px';
+
+// console.log(parseInt(test));
+// console.log(parseFloat(test));
