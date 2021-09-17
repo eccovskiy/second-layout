@@ -1264,20 +1264,22 @@ learnJS('JS', done);*/
 
 // let arr = [2,4,6,8,8,8,2,24];
 
-// let result = arr.map((value) => value * 2);
-// console.log(result);
+// // let result = arr.map((value) => value * 2);
+// // console.log(result);
 
 // function map(arr, callback){
 //     let result = [];
+//     let counter = -1;
 
 //     for (let i = 0; i < arr.length; i++) {
-//         result.push(callback(arr[i], i, arr));
+//         counter++;
+//         result[counter] = (callback(arr[i]));
 //     }
 
 //     return result;
 // }
 
-// console.log(map(arr, (value) => value * 2));
+// console.log(map(arr, (value) => value * 3));
 
 // every / some
 
@@ -1378,25 +1380,27 @@ learnJS('JS', done);*/
 
 /*-Примеры массивов*/
 
-// const arr = [45, {a: 7}, 69, 'ads', {b: 17}];
+const arr = [45, {a: 7}, 69, 'ads', {b: 17}, 'bbc'];
 
 // let result = arr.filter(value => (typeof(value) === 'string'));
 
 // console.log(result);
 
-// function someFilter(arr, callback) {
-//     let result = [];
+function someFilter(arr, callback) {
+    let result = [];
+    let counter = -1;
 
-//     for (let i = 0; i < arr.length; i++) {
-//         if(callback(arr[i])){
-//             result.push(arr[i]);
-//         }
-//     }
+    for (let i = 0; i < arr.length; i++) {
+        if(callback(arr[i])){
+            counter++;
+            result[counter] = arr[i];
+        }
+    }
 
-//     return result;
-// }
+    return result;
+}
 
-// console.log(someFilter(arr, value => typeof(value) === 'string'));
+console.log(someFilter(arr, value => typeof(value) === 'object'));
 
 const obj = {
     a: 7,
@@ -1481,24 +1485,64 @@ console.log(arrs2);
 
 /*setTimeout and setInterval*/
 
-// В другом файле
+// В файле setTimeout
 
 /*Promise*/
 
-console.log('Запрос данных');
+// console.log('Запрос данных');
 
-setTimeout(() => {
-    console.log('Подготовка данных...');
+// const req = new Promise(function(resolve, reject) {
 
-    const product = {
-        name: 'TV',
-        price: 2000
-    };
+//     setTimeout(() => {
+//         console.log('Подготовка данных...');
+    
+//         const product = {
+//             name: 'TV',
+//             price: 2000
+//         };
+    
+//         resolve(product);
+    
+//     }, 2000);
 
-    setTimeout(() => {
+// });
 
+// req.then((product) => {
+//     return new Promise((resolve,reject) => {
+//         setTimeout(() => {
+//             product.status = 'order';
+//             resolve(product);
+//         }, 2000);
+//     }).then((data) => {
+//         data.modify = true;
+//         return data;
+//     }).then((data) => {
+//         console.log(data);
+//     });
+// }).catch(() => {
+//     console.error('Произошла ошибка');
+// }).finally(() => {
+//     console.log('Finally');
+// });
+
+const test = time => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(), time);
     });
-}, 2000);
+};
+
+// test(1000).then(() => console.log('1000'));
+// test(2000).then(() => console.log('2000'));
+
+// Promise.all([test(1000), test(2000)]).then(() => {
+//     console.log('All');
+// });
+
+Promise.race([test(1000), test(2000)]).then(() => {
+    console.log('Race');
+});
+
+
 
 // let a = [1, 2, 3];
 // let b = a;
@@ -1620,14 +1664,15 @@ let fibonacciMemo = (function() {
             value = f(n - 1) + f(n - 2);
             memo[n] = value;
         }
+
         return value;
     };
   
 })();
 
-let res = fibonacciMemo(4);
+let inputFibonacciNumber = fibonacciMemo(2);
 
-console.log(res);
+console.log(inputFibonacciNumber);
 
 /*3) Иттерируемый объект*/
 let fibonacciObject = {
@@ -1640,7 +1685,7 @@ let fibonacciObject = {
         while (true){
             let current = fn1;
             fn1 = fn2;
-            fn2 = fn2 + current;
+            fn2 += current;
             yield current;
             // if (reset){
             //     fn1 = 0;
@@ -1853,6 +1898,8 @@ const newRectangleSquare = new RectangleSquare(15, 20);
 
 console.log(newRectangleSquare.SquareСalculating());
 
+// circle
+
 function circlePerimeter(r) {
     let pi = 3.14,
         p = 2 * pi * r;
@@ -1899,6 +1946,56 @@ const newCircleSquare = new CircleSquare(15);
 
 console.log(newCircleSquare.perimeterСalculating());
 
+/*(((4)))Из 10 в 2*/
+
+function decToBin(n) {
+    let b = '';
+    
+    while (n > 0) {
+        b = ('' + (n % 2)) + b;
+        if ((n % 2) === 1) {
+            n = ((n - 1) / 2);
+        } else {
+            n = n / 2;
+        }
+        // n = Math.trunc(n);
+    }
+
+    return b;
+}
+
+console.log(decToBin(18));
+
+function binToDec(n) {
+    let result = 0;
+
+    n = '' + n;
+
+    function reverse(string) {
+        let reverseString = '';
+
+        for (let i = string.length - 1; i >= 0; i--) {
+            console.log(string[i]);
+            reverseString += string[i];
+        }
+
+        return reverseString;
+    }
+    
+    n = (reverse(n));
+
+    console.log(n);
+
+    for (let i = 0; i < n.length; i++) {
+        // console.log(n[i]);
+        result += n[i] * (2**i);
+    }
+
+    return result;
+}
+
+console.log(binToDec(110));
+
 /*(((5))) Факториал*/
 /*
 0! = 1
@@ -1918,7 +2015,7 @@ function factorial(num) {
     }
 }
 
-console.log(factorial(-1));
+console.log(factorial(4));
 
 /*2)*/
 function factorialTern(num) {
@@ -1927,7 +2024,7 @@ function factorialTern(num) {
 
 console.log(factorialTern(4));
 
-let facy = (function() {
+let factorialMemo = (function() {
     let memo = {};
   
     return function f(n) {
@@ -1947,59 +2044,85 @@ let facy = (function() {
   
   })();
 
-  let resu = facy(5);
+  let factorialResult = factorialMemo(3);
 
-  console.log(resu);
+  console.log(factorialResult);
 
-/*(((4)))Из 10 в 2*/
+/*(((9))) Filter, map, reduce, foreach */
 
-function decToBin(n) {
-    let b = '';
-    
-    while (n > 0) {
-        b = ('' + (n % 2)) + b;
-        if ((n % 2) === 1) {
-            n = ((n - 1) / 2);
-        } else {
-            n = n / 2;
+// filter
+
+const arr = [45, {a: 7}, 69, 'ads', {b: 17}, 'bbc'];
+
+function someFilter(arr, callback) {
+    let result = [];
+    let counter = -1;
+
+    for (let i = 0; i < arr.length; i++) {
+        if(callback(arr[i])){
+            counter++;
+            result[counter] = arr[i];
         }
-        // n = Math.trunc(n);
-    }
-
-    return b;
-}
-
-console.log(decToBin(12));
-
-function binToDec(n) {
-    let result = 0;
-
-    n = '' + n;
-
-    function reverse(string) {
-        var reverseString = '';
-
-        for (var i = string.length - 1; i >= 0; i--) {
-            reverseString += string[i];
-        }
-
-        return reverseString;
-    }
-    
-    n = (reverse(n));
-
-    console.log(n);
-
-    for (let i = 0; i < n.length; i++) {
-        console.log(n[i]);
-        result += n[i] * (2**i);
     }
 
     return result;
 }
 
-console.log(binToDec(11));
+console.log(someFilter(arr, value => typeof(value) === 'number'));
 
+// map
+
+let arr = [2,4,6,8,8,8,2,24];
+
+function map(arr, callback){
+    let result = [];
+    let counter = -1;
+
+    for (let i = 0; i < arr.length; i++) {
+        counter++;
+        result[counter] = (callback(arr[i]));
+    }
+
+    return result;
+}
+
+console.log(map(arr, (value) => value * 3));
+
+// reduce 
+
+const arr = [4, 5, 1, 3, 2, 6];
+
+function reduce(arr, callback, initial) {
+    let result = initial || 0;
+
+    for( let i = 0; i < arr.length; i++) {
+        result = callback(result, arr[i]);
+    }
+
+    return result;
+}
+
+console.log(reduce(arr, (sum, nextNum) => (sum + nextNum), 12));
+
+// forEach
+
+let arr = [2,4,6,7,8,5,8,8,9,2,1,24];
+
+function forEach(arr, callback){
+    // let result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        callback(arr[i], i, arr);
+        // result[i] = ((` ${i + 1} : ${arr[i]} из массива ${arr}`));
+    }
+    
+    // return result;
+}
+
+forEach(arr, (value, number, array) => console.log(`№${number + 1} имеет значение ${value} из массива ${array}`));
+
+
+///////////////////////////////////
 
   function show(min, max){
     if(min <= max) {
