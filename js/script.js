@@ -1542,7 +1542,18 @@ Promise.race([test(1000), test(2000)]).then(() => {
     console.log('Race');
 });
 
+//Задача на определения этажа и подъезда по номеру квартиры
 
+// let n = 4; // под
+// let k = 9; // этаж
+// let m = 4; // кварт
+// let number = 72;
+
+// let km = k * m;
+// let pod = Math.ceil(number / km);
+// let lastFlat = km * pod;
+// let res = Math.ceil((km - (lastFlat - number)) / m);
+// console.log(km, pod, lastFlat, res);
 
 // let a = [1, 2, 3];
 // let b = a;
@@ -1946,6 +1957,61 @@ const newCircleSquare = new CircleSquare(15);
 
 console.log(newCircleSquare.perimeterСalculating());
 
+/*(((3))) Массивы*/
+
+// min and max values
+
+let array2 = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
+
+let i = 0,
+    minValue = array2[0],
+    maxValue = minValue;
+    
+function recursionArray(arr) {
+    if(i >= (arr.length)){
+        return;
+    } else if (arr[i] < minValue) {
+        minValue = arr[i];
+    } else if (arr[i] > maxValue) {
+        maxValue = arr[i];
+    }
+
+    i++;
+    recursionArray(arr); 
+}
+
+recursionArray(array2);
+console.log(`В массиве [${array2}], у нас минимальное значение: ${minValue}, максимальное значение: ${maxValue}`);
+
+// zero numbers
+
+let array3 = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
+
+let i = 0,
+    zeroIntegers = 0,
+    positiveIntegers = 0,
+    negativeIntegers = 0;
+
+function recursionArray(arr) {
+    
+
+    if(i >= (arr.length)){
+        return;
+    } else if (arr[i] === 0) {
+        zeroIntegers++;
+    } else if (arr[i] > 0) {
+        positiveIntegers++;
+    } else if (arr[i] < 0) {
+        negativeIntegers++;
+    }
+
+    i++;
+    recursionArray(arr); 
+}
+
+recursionArray(array3);
+console.log(`В массиве [${array3}], у нас - нулевых элементов: ${zeroIntegers}, положительных чисел: ${positiveIntegers}, отрицательных чисел: ${negativeIntegers}`);
+
 /*(((4)))Из 10 в 2*/
 
 function decToBin(n) {
@@ -2048,6 +2114,262 @@ let factorialMemo = (function() {
 
   console.log(factorialResult);
 
+/*(((6))) Матрица 1*/
+
+// Транспонировать матрицу
+
+let matrix = [[1, 2], [1, 2]];
+
+function transpose(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        // console.log(matrix[i]);
+        for (let j = 0; j < i; j++) {
+            console.log(matrix[i][j]);
+        const temp = matrix[i][j];
+        matrix[i][j] = matrix[j][i];
+        matrix[j][i] = temp;
+        console.log(matrix[i][j]);
+      }
+    }
+  }
+
+  transpose(matrix);
+
+  console.log(matrix);
+
+  // Сложит две матрицы
+
+let matrix2 = [
+    [1,2,3],
+    [1,2,3],
+    [1,2,3],
+];
+
+let matrix3 = [
+    [4,5,6],
+    [4,5,6],
+    [4,5,6],
+];
+
+// let matrix4 = [...matrix2, ...matrix3];
+
+// console.log(matrix4);
+
+let matrix5 = [];
+
+function SumMatrix(matrix2, matrix3) {   
+    
+    var m = matrix2.length, n = matrix2[0].length;
+    for (var i = 0; i < m; i++) {
+        matrix5[i] = [];
+        console.log(matrix5);
+        for (var j = 0; j < n; j++) {
+            matrix5[i][j] = matrix2[i][j] + matrix3[i][j];
+        }
+}
+
+    // return matrix5;
+}
+
+SumMatrix(matrix2, matrix3);
+console.log(matrix5);
+
+// console.log(matrix5);
+
+// for (let i=0; i < matrix2.length; i++) {
+//     for (var j = 0; j < i; j++){
+//         matrix5.push(matrix2[i][j] + matrix3[i][j]);
+//     }
+// }
+
+let matrix9 = [
+    [0,6,1],
+    [43,7,0],
+    [15,8,0],
+    [12,0,0],
+    [34,9,1]
+];
+
+let matrix6 = [];
+
+function SumMatrix2(matrix9) {   
+    
+    var m = matrix9.length, n = matrix9[0].length;
+    for (var i = 0; i < m; i++) {
+        matrix6[i] = [];
+        // console.log(matrix6);
+        for (var j = 0; j < n; j++) {
+            if(matrix9[i][j] !== 0) {
+                matrix6[i][j] = matrix9[i];
+            } else if (matrix9[i][j] == 0) {
+                // console.log('Break');
+                // matrix6[i][j] = matrix9[i][j];
+                break;
+            }
+        }
+}
+
+    // return matrix5;
+}
+
+SumMatrix2(matrix9);
+console.log(matrix6);
+
+// let arr1 = [
+//     [1, 2],
+//     [1, 2]
+// ];
+
+let arr5 = [
+    [0,-6,1],
+    [43,7,0],
+    [15,8,0],
+    [12,0,0],
+    [34,9,1]
+];
+
+function zeroArray(arr) {
+    let filterArray = [];
+    let counter = 0;
+    
+    for (let i = 0; i < arr.length; i++) {
+        let el = arr[i];
+        // let min = el[0];
+        // console.log(min);
+        for(j = 0; j < el.length; j++) {
+            // if(el[j] < min) {
+            //     min = el[j];
+            //     console.log(min);
+            // }
+            // }
+
+        // return min;
+            // console.log(el[j]);
+            // if (el[2] != 0) {
+            //     //   alert(el);
+            //     //   arr5.splice(i--, 1);
+        
+            //     filterArray[i] = arr[i];
+            //     } 
+                if (el[j + counter] == 0) {
+                    // console.log(el[j]);
+                    // filterArray[counter] = el;
+                    // counter++;
+                    continue;
+                } else {
+                    filterArray[counter] = el;
+                    counter++;
+                }
+              }
+        }
+        
+        
+            return filterArray;
+            }
+
+// zeroArray(arr5);
+console.log(zeroArray(arr5));
+
+const compact = (coll) => {
+    // Инициализация результата
+    // Для пустой входной коллекции результатом будет пустой массив
+    const result = [];
+  
+    for (const item of coll) {
+      if (typeof(item) !== 0) {
+        result.push(item);
+      }
+    }
+  
+    return result;
+  };
+  
+  console.log(compact([0, 7]));
+
+        // let filterArray = function someFilter(arr, callback) {
+        //     let result = [];
+        //     let counter = 0;
+        
+        //     for (let i = 0; i < arr.length; i++) {
+        //         if(callback(arr[i])){
+        //             result[counter] = arr[i];
+        //             counter++;
+        //         }
+        //     }
+        
+        //     return result;
+        // };
+
+    
+    // return filterArray;
+// }
+
+        
+// console.log(someFilter(arr[i], (el) => (el[2]) === 0));
+    //     if (el[2] != 0) {
+    //     //   alert(el);
+    //     //   arr5.splice(i--, 1);
+
+    //     filterArray[i] = arr[i];
+    //     } else if (el[2] === 0) {
+    //         delArray[i]= arr[i];
+    //     }
+    //   }
+
+    // return filterArray;
+//     }
+// }
+
+// console.log(zeroArray(arr5));
+
+const arr67 = [45, {a: 7}, 69, 'ads', {b: 17}, 'bbc'];
+
+function someFilter(arr, callback) {
+    let result = [];
+    let i = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if(callback(arr[i])){
+            result[counter] = arr[i];
+            counter++;
+        }
+    }
+
+    return result;
+}
+
+console.log(someFilter(arr67, (value) => (value) === 0));
+
+// console.log(arr67);
+
+    // arr5 = arr5.filter(function (item) {
+    //     return item[2] != 0;
+    // });
+    
+    // for (let i = arr5.length-1; i >= 0; --i) {
+       
+        
+    // }
+
+// console.log(arr5);
+
+let mainArray = [[1, 0, 2], [2, 1, 1], [3, 2, 2]];
+
+function zeroArr(arr) {
+    let sum = 0;
+
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = 0; j < i; j++) {
+
+            
+        }
+    }
+
+    return sum;
+}
+
+console.log(zeroArr(mainArray));
+
 /*(((9))) Filter, map, reduce, foreach */
 
 // filter
@@ -2056,19 +2378,19 @@ const arr = [45, {a: 7}, 69, 'ads', {b: 17}, 'bbc'];
 
 function someFilter(arr, callback) {
     let result = [];
-    let counter = -1;
+    let counter = 0;
 
     for (let i = 0; i < arr.length; i++) {
         if(callback(arr[i])){
-            counter++;
             result[counter] = arr[i];
+            counter++;
         }
     }
 
     return result;
 }
 
-console.log(someFilter(arr, value => typeof(value) === 'number'));
+console.log(someFilter(arr, value => typeof(value) === 'object'));
 
 // map
 
@@ -2076,11 +2398,11 @@ let arr = [2,4,6,8,8,8,2,24];
 
 function map(arr, callback){
     let result = [];
-    let counter = -1;
+    let counter = 0;
 
     for (let i = 0; i < arr.length; i++) {
-        counter++;
         result[counter] = (callback(arr[i]));
+        counter++;
     }
 
     return result;
@@ -2168,7 +2490,7 @@ function fibo(n){
 
 console.log(flatten(1, [2, [[3]], 4, 5, [7]]));
 
-/*(((3))) Массивы*/
+
 
 function sort(arr){
     for(let i = 0; i < arrSort.length; i++){
@@ -2308,3 +2630,233 @@ for(let item of f1(10, 20)){
 }
 
 console.log(sum);
+
+
+let myArray = [6, 7, 3, 8, 7, 2, 9];
+
+let min = myArray[0],
+    max = min;
+
+  for (let i = 1; i < myArray.length; ++i) {
+      if (myArray[i] > max) { //9
+          max = myArray[i]; 
+          console.log(max);
+      } else if (myArray[i] < min) { //0
+        min = myArray[i]; 
+        console.log(min);
+      }
+  }
+
+  console.log(min, max);
+
+function summa(array, sum){
+    sum += array.shift();
+
+    if(array.length !=0){
+        sum = summa(array, sum);
+    }
+
+    return sum;
+}
+
+console.log(summa([1,2,3], 0));
+
+// let lights = [
+//     "red",
+//     "yellow",
+//     "green",
+//     "yellow",
+//    ];
+
+//    console.log(lights.length);
+   
+// let index = 0;
+   
+//    function ChangeLights() {
+   
+//     //  setInterval(function () {ChangeLights();}, 1000);
+     
+//     index = index + 1;
+    
+//     if (index == lights.length) {
+//         console.log(lights);
+//         index++;
+//     }
+    
+//     // var image = document.getElementById('traffic');
+//     //    image.src=lights[index];
+   
+//    }
+
+//    ChangeLights();
+
+var lights = {
+    red: "red",
+    yellow: "yellow",
+    green: "green"
+  };
+  
+  var sequence = ['red', 'yellow', 'green', 'yellow'];
+  
+  function startChangeLights() {
+    for (var index = 0; index < sequence.length; index++) {
+      changeLight(index, sequence[index]);
+    }
+  
+    function changeLight(index, color) {
+      setTimeout(function() {
+        var image = document.getElementById('traffic');
+        image.src = lights[color];
+      }, index * 1000);
+    }
+  }
+
+  startChangeLights();
+
+let trafficLights = ['red', 'yellow', 'green'];
+
+for(let k = 0; k < 3; k++) {
+    for(let i = 0; i < trafficLights.length; i++) {
+        console.log(trafficLights[i]);
+        if(i === (trafficLights.length - 1)) {
+            console.log(trafficLights[1]);
+        }
+    }
+}
+
+
+let redLight = 'red',
+    yellowLight = 'yellow',
+    greenLight = 'green',
+    trafficLight = '';
+
+switch(yellowLight) {
+    case redLight:
+    case greenLight:
+        console.log(yellowLight);
+        break;
+    case yellowLight:
+        console.log(greenLight + 2);
+        break;
+}
+
+let reverse = false;
+
+function showNewColor(currentColor) {
+    let newColor;
+  
+    switch(currentColor) {
+    case 'красный':
+        newColor = 'желтый';
+        break;
+    case 'желтый':
+        newColor = reverse ? 'красный' : 'зеленый';
+        reverse = !reverse;
+        break;
+    case 'зеленый':
+        newColor = 'желтый';
+        break;  
+    default:
+       newColor = 'красный';
+    }
+
+    return newColor;
+}
+
+console.log(showNewColor('красный'));
+console.log(showNewColor('желтый'));
+console.log(showNewColor('зеленый'));
+console.log(showNewColor('желтый'));
+console.log(showNewColor('красный'));
+console.log(showNewColor('желтый'));
+console.log(showNewColor('зеленый'));
+console.log(showNewColor('желтый'));
+
+reverse = true;
+
+function showNewColor(currentColor) {
+    let newColor;
+  
+    switch(currentColor) {
+    case 'красный':
+        newColor = 'желтый';
+        break;
+    case 'желтый':
+        newColor = reverse ? 'красный' : 'зеленый';
+        reverse = !reverse;
+        console.log(reverse);
+        break;
+    case 'зеленый':
+        newColor = 'желтый';
+        break;  
+    default:
+       newColor = 'красный';
+    }
+
+    console.log(reverse);
+    return newColor;
+}
+
+console.log(showNewColor('желтый'));
+
+let reverse = false;
+
+function showNewColor2(currentColor = 'желтый') {
+    let newColor;
+    
+    switch(currentColor) {
+     case 'красный':
+       newColor = 'желтый';
+       break;
+     case 'желтый':
+        console.log(reverse);
+       newColor = reverse ? 'красный' : 'зеленый';
+       reverse = !reverse;
+       console.log(reverse);
+       break;
+       case 'зеленый':
+        newColor = 'желтый';
+        break;  
+      default:
+       newColor = 'красный';
+    }
+    console.log(reverse);
+    return newColor;
+  }
+
+  console.log(showNewColor2());
+
+let a = false;
+
+function testik() {
+    a = true;
+    console.log(a);
+}
+
+testik();
+console.log(a);
+
+window.reverse2 = false;
+
+function showNewColor3(currentColor = 'красный') {
+  let newColor;
+
+  switch(currentColor) {
+   case 'красный':
+     newColor = 'желтый';
+     break;
+   case 'желтый':
+     newColor = reverse ? 'красный' : 'зеленый';
+     window.reverse2 = !window.reverse2;
+     break;
+   case 'зеленый':
+       newColor = 'желтый';
+       break;
+    default:
+     newColor = 'красный';
+  }
+
+  return newColor;
+}
+
+showNewColor3();
