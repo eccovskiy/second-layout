@@ -1,31 +1,31 @@
 let reverse = false;
 
-function showNewColor(currentColor) {
-    let newColor;
+function showNewTrafficLight(currentTrafficLight) {
+    let newTrafficLight;
   
-    switch(currentColor) {
+    switch(currentTrafficLight) {
     case 'красный':
-        newColor = 'желтый';
+        newTrafficLight = 'желтый';
         break;
     case 'желтый':
-        newColor = reverse ? 'красный' : 'зеленый';
+        newTrafficLight = reverse ? 'красный' : 'зеленый';
         reverse = !reverse;
         break;
     case 'зеленый':
-        newColor = 'желтый';
+        newTrafficLight = 'желтый';
         break;  
     default:
-       newColor = 'красный';
+       newTrafficLight = 'красный';
     }
 
-    return newColor;
+    return newTrafficLight;
 }
 
-console.log(showNewColor('красный'));
-console.log(showNewColor('желтый'));
-console.log(showNewColor('зеленый'));
-console.log(showNewColor('желтый'));
-console.log(showNewColor('красный'));
-console.log(showNewColor('желтый'));
-console.log(showNewColor('зеленый'));
-console.log(showNewColor('желтый'));
+console.log(showNewTrafficLight('красный'));
+console.log(showNewTrafficLight('желтый'));
+console.log(showNewTrafficLight('зеленый'));
+console.log(showNewTrafficLight('желтый'));
+console.log(showNewTrafficLight('красный'));
+console.log(showNewTrafficLight('желтый'));
+console.log(showNewTrafficLight('зеленый'));
+console.log(showNewTrafficLight('желтый'));
