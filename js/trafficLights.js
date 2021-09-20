@@ -1,18 +1,23 @@
 let reverse = false;
+let newTrafficLight;
+let counter = 0;
 
-function showNewTrafficLight(currentTrafficLight) {
-    let newTrafficLight;
+function showNewTrafficLight() {
+    
   
-    switch(currentTrafficLight) {
-    case 'красный':
+    switch(counter) {
+    case 0:
         newTrafficLight = 'желтый';
+        counter++;
         break;
-    case 'желтый':
+    case 1:
         newTrafficLight = reverse ? 'красный' : 'зеленый';
         reverse = !reverse;
+        counter++;
         break;
-    case 'зеленый':
+    case 2:
         newTrafficLight = 'желтый';
+        counter--;
         break;  
     default:
        newTrafficLight = 'красный';
@@ -21,11 +26,9 @@ function showNewTrafficLight(currentTrafficLight) {
     return newTrafficLight;
 }
 
-console.log(showNewTrafficLight('красный'));
-console.log(showNewTrafficLight('желтый'));
-console.log(showNewTrafficLight('зеленый'));
-console.log(showNewTrafficLight('желтый'));
-console.log(showNewTrafficLight('красный'));
-console.log(showNewTrafficLight('желтый'));
-console.log(showNewTrafficLight('зеленый'));
-console.log(showNewTrafficLight('желтый'));
+console.log(showNewTrafficLight());
+console.log(showNewTrafficLight());
+console.log(showNewTrafficLight());
+console.log(showNewTrafficLight());
+console.log(showNewTrafficLight());
+console.log(showNewTrafficLight());
