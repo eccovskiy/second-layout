@@ -1525,11 +1525,11 @@ console.log(arrs2);
 //     console.log('Finally');
 // });
 
-const test = time => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(), time);
-    });
-};
+// const test = time => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(), time);
+//     });
+// };
 
 // test(1000).then(() => console.log('1000'));
 // test(2000).then(() => console.log('2000'));
@@ -1537,6 +1537,69 @@ const test = time => {
 // Promise.all([test(1000), test(2000)]).then(() => {
 //     console.log('All');
 // });
+
+// Promise.race([test(1000), test(2000)]).then(() => {
+//     console.log('Race');
+// });
+
+// Promise repeat
+
+console.log('Запрос данных...');
+
+const req = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        console.log('Подготовка данных...');
+    
+        const product = {
+            name: 'TV',
+            price: 2000
+        };
+    
+        resolve(product);
+        
+    }, 2000);
+});
+
+req.then((product) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            product.status = 'order';
+            resolve(product);
+            // reject();
+        }, 2000);
+    }).then(data => {
+        data.modify = true;
+        return data;
+    }).then((data) => {
+        console.log(data);
+    }).catch(() => {
+        console.error('Error');
+    }).finally(() => {
+        console.log('Finally');
+    });
+
+});
+
+const test = time => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+            reject();
+        }, time);
+    });
+};
+
+test(1000).then(() => {
+    console.log('1000 ms');
+});
+
+test(2000).then(() => {
+    console.log('2000 ms');
+});
+
+Promise.all([test(1000), test(2000)]).then(() => {
+    console.log('All');
+});
 
 Promise.race([test(1000), test(2000)]).then(() => {
     console.log('Race');
@@ -2690,29 +2753,6 @@ console.log(summa([1,2,3], 0));
 
 //    ChangeLights();
 
-var lights = {
-    red: "red",
-    yellow: "yellow",
-    green: "green"
-  };
-  
-  var sequence = ['red', 'yellow', 'green', 'yellow'];
-  
-  function startChangeLights() {
-    for (var index = 0; index < sequence.length; index++) {
-      changeLight(index, sequence[index]);
-    }
-  
-    function changeLight(index, color) {
-      setTimeout(function() {
-        var image = document.getElementById('traffic');
-        image.src = lights[color];
-      }, index * 1000);
-    }
-  }
-
-  startChangeLights();
-
 let trafficLights = ['red', 'yellow', 'green'];
 
 for(let k = 0; k < 3; k++) {
@@ -2723,24 +2763,6 @@ for(let k = 0; k < 3; k++) {
         }
     }
 }
-
-
-let redLight = 'red',
-    yellowLight = 'yellow',
-    greenLight = 'green',
-    trafficLight = '';
-
-switch(yellowLight) {
-    case redLight:
-    case greenLight:
-        console.log(yellowLight);
-        break;
-    case yellowLight:
-        console.log(greenLight + 2);
-        break;
-}
-
-let reverse = false;
 
 function showNewColor(currentColor) {
     let newColor;
