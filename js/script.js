@@ -1544,66 +1544,122 @@ console.log(arrs2);
 
 // Promise repeat
 
-console.log('Запрос данных...');
+// console.log('Запрос данных...');
 
-const req = new Promise(function(resolve, reject) {
-    setTimeout(() => {
-        console.log('Подготовка данных...');
+// const req = new Promise(function(resolve, reject) {
+//     setTimeout(() => {
+//         console.log('Подготовка данных...');
     
-        const product = {
-            name: 'TV',
-            price: 2000
-        };
+//         const product = {
+//             name: 'TV',
+//             price: 2000
+//         };
     
-        resolve(product);
+//         resolve(product);
         
-    }, 2000);
-});
+//     }, 2000);
+// });
 
-req.then((product) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            product.status = 'order';
-            resolve(product);
-            // reject();
-        }, 2000);
-    }).then(data => {
-        data.modify = true;
-        return data;
-    }).then((data) => {
-        console.log(data);
-    }).catch(() => {
-        console.error('Error');
-    }).finally(() => {
-        console.log('Finally');
-    });
+// req.then((product) => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             product.status = 'order';
+//             resolve(product);
+//             // reject();
+//         }, 2000);
+//     }).then(data => {
+//         data.modify = true;
+//         return data;
+//     }).then((data) => {
+//         console.log(data);
+//     }).catch(() => {
+//         console.error('Error');
+//     }).finally(() => {
+//         console.log('Finally');
+//     });
 
-});
+// });
 
-const test = time => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-            reject();
-        }, time);
-    });
-};
+// const test = time => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve();
+//             reject();
+//         }, time);
+//     });
+// };
 
-test(1000).then(() => {
-    console.log('1000 ms');
-});
+// test(1000).then(() => {
+//     console.log('1000 ms');
+// });
 
-test(2000).then(() => {
-    console.log('2000 ms');
-});
+// test(2000).then(() => {
+//     console.log('2000 ms');
+// });
 
-Promise.all([test(1000), test(2000)]).then(() => {
-    console.log('All');
-});
+// Promise.all([test(1000), test(2000)]).then(() => {
+//     console.log('All');
+// });
 
-Promise.race([test(1000), test(2000)]).then(() => {
-    console.log('Race');
-});
+// Promise.race([test(1000), test(2000)]).then(() => {
+//     console.log('Race');
+// });
+
+/*Локальные сервера*/ // В конспекте про MAMP и Open Server
+
+/*JSON*/
+
+// const person = {
+//     name: 'Alex',
+//     tel : '+74444444',
+//     parents: {
+//         mom: 'Olga',
+//         dad: 'Mike'
+//     },
+// };
+
+// const clone = JSON.parse(JSON.stringify(person));
+
+// clone.parents.mom = 'Ann';
+
+// console.log(person);
+// console.log(clone);
+
+// const obecting = {
+//     name: 'Alex',
+//     age: 17
+// };
+
+// function cloning(obj) {
+//     let newObj = {};
+
+//     for(let key in obj) {
+//         newObj[key] = obj[key];
+//     }
+
+//     return newObj;
+// }
+
+// const newObjecting = cloning(obecting);
+
+// newObjecting.age = 25;
+
+// console.log(obecting);
+// console.log(newObjecting);
+
+// let lucky = Object.create(obecting);
+
+
+
+// console.log(lucky);
+
+/*AJAX*/
+
+// В папке calc
+
+/*Local storage*/
+
+localStorage.setItem('number', 5);
 
 //Задача на определения этажа и подъезда по номеру квартиры
 
@@ -2200,7 +2256,7 @@ function transpose(matrix) {
 
   console.log(matrix);
 
-  // Сложит две матрицы
+  // Сложить две матрицы
 
 let matrix2 = [
     [1,2,3],
@@ -2882,3 +2938,116 @@ function showNewColor3(currentColor = 'красный') {
 }
 
 showNewColor3();
+
+async function f(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Hi");
+        }, 2000);
+    }).then((value) => {
+        return "then: " + value;
+    });
+}
+
+f().then((value) => console.log(value));
+
+let obj = {
+    min: 10,
+    max: 20,
+    [Symbol.asyncIterator](){
+        let current = this.min;
+        let max = this.max;
+        return {
+            next(){
+                return new Promise((resolve, reject) => {
+                    if(current > max){
+                        resolve({value: undefined, done: true});
+                    }else {
+                        resolve({value: ++current, done: false});
+                    }
+                });
+            },
+        };
+    },
+};
+
+(async () => {
+    for await(let item of obj){
+        console.log(item);
+    }
+})();
+
+function f(word, key, encode){
+    let result = '';
+    let alph = 'qwertyuio pasdfghjklzxcvbnm';
+    let startAlph = alph.slice(key) + alph.slice(0, key);
+    
+
+    if(encode) {
+        let temp = startAlph;
+        startAlph = alph; // qwertyuio pasdfghjklzxcvbnm
+        alph = temp; // rtyuio pasdfghjklzxcvbnmqwe
+    }
+
+    for(let character of word){
+        console.log(character);
+        let index = alph.indexOf(character);
+        console.log(index);
+        result += startAlph[index];
+       
+    }
+
+    return result;
+}
+
+let word = 'asd';
+let key = 3;
+console.log(f(word, key));
+
+
+let alph3 = 'qwertyuio pasdfghjklzxcvbnm';
+let startAlph2 = alph3.slice(3) + alph3.slice(0, 3);
+
+console.log(startAlph2);
+
+function sort(arr, callback){
+    for(let i = 0; i < arr.length; i++){
+        // console.log(arr[i]);
+        for(let j = i+1; j < arr.length; j++){
+            console.log(arr[j]);
+            if(callback(arr[i], arr[j])){
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                
+            }
+        }
+    }
+}
+
+let arr = [2,6,8,4];
+sort(arr, (value1, value2) => value1 < value2);
+console.log(arr);
+
+// 2,6,8,4
+// 6,2,8,4
+// 6,8,2,4
+// 6,8,4,2
+
+// const array4 = Array(100).fill(null).map(() => Math.floor(Math.random() * 2000) - 1000);
+const array4 = [2,6,5,8,4];
+
+function sortBubble(arr) {
+    for (let n = 0; n < arr.length; n++) {
+        for(let i = 0; i < arr.length - 1 - n; i++) {
+            if (arr[i] > arr[i + 1]) {
+                const temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+    }    
+}
+
+sortBubble(array4);
+console.log(array4);
