@@ -1800,7 +1800,7 @@ let fibonacciMemo = (function() {
   
 })();
 
-let inputFibonacciNumber = fibonacciMemo(2);
+let inputFibonacciNumber = fibonacciMemo(3);
 
 console.log(inputFibonacciNumber);
 
@@ -1902,7 +1902,7 @@ const result = [0, 1];
 
 function fib(num) {
 
-    for(let i = 2; i <= num; i++) {
+    for(let i = 2; i < num; i++) {
         const prevNum1 = result[i - 1];
         const prevNum2 = result[i - 2];
         result.push(prevNum1 + prevNum2);
@@ -1918,8 +1918,9 @@ console.log(result);
 function fibShort(num) {
     let a = 0,
         b = 1;
+        let c = 0;
 
-        for (let i = 2; i <= num; i++) {
+        for (let i = 2; i < num; i++) {
             let c = a + b;
                 a = b;
                 b = c;
@@ -2080,10 +2081,10 @@ console.log(newCircleSquare.perimeterСalculating());
 
 // min and max values
 
-let array2 = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
+let array = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
 
 let i = 0,
-    minValue = array2[0],
+    minValue = array[0],
     maxValue = minValue;
     
 function recursionArray(arr) {
@@ -2099,29 +2100,28 @@ function recursionArray(arr) {
     recursionArray(arr); 
 }
 
-recursionArray(array2);
-console.log(`В массиве [${array2}], у нас минимальное значение: ${minValue}, максимальное значение: ${maxValue}`);
+recursionArray(array);
+console.log(`В массиве [${array}], у нас минимальное значение: ${minValue}, максимальное значение: ${maxValue}`);
 
 // zero numbers
 
 let array3 = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
 
 let i = 0,
-    zeroIntegers = 0,
-    positiveIntegers = 0,
-    negativeIntegers = 0;
+    zeroValues = 0,
+    positiveValues = 0,
+    negativeValues = 0;
 
 function recursionArray(arr) {
     
-
     if(i >= (arr.length)){
         return;
     } else if (arr[i] === 0) {
-        zeroIntegers++;
+        zeroValues++;
     } else if (arr[i] > 0) {
-        positiveIntegers++;
+        positiveValues++;
     } else if (arr[i] < 0) {
-        negativeIntegers++;
+        negativeValues++;
     }
 
     i++;
@@ -2129,32 +2129,32 @@ function recursionArray(arr) {
 }
 
 recursionArray(array3);
-console.log(`В массиве [${array3}], у нас - нулевых элементов: ${zeroIntegers}, положительных чисел: ${positiveIntegers}, отрицательных чисел: ${negativeIntegers}`);
+console.log(`В массиве [${array3}], у нас - нулевых элементов: ${zeroValues}, положительных чисел: ${positiveValues}, отрицательных чисел: ${negativeValues}`);
 
 /*(((4)))Из 10 в 2*/
 
-function decToBin(n) {
-    let b = '';
+function decToBin(number) {
+    let decNumber = '';
     
-    while (n > 0) {
-        b = ('' + (n % 2)) + b;
-        if ((n % 2) === 1) {
-            n = ((n - 1) / 2);
+    while (number > 0) {
+        decNumber = ('' + (number % 2)) + decNumber;
+        if ((number % 2) === 1) {
+            number = ((number - 1) / 2);
         } else {
-            n = n / 2;
+            number = number / 2;
         }
         // n = Math.trunc(n);
     }
 
-    return b;
+    return decNumber;
 }
 
 console.log(decToBin(18));
 
-function binToDec(n) {
+function binToDec(number) {
     let result = 0;
 
-    n = '' + n;
+    number = '' + number;
 
     function reverse(string) {
         let reverseString = '';
@@ -2167,13 +2167,13 @@ function binToDec(n) {
         return reverseString;
     }
     
-    n = (reverse(n));
+    number = (reverse(number));
 
-    console.log(n);
+    console.log(number);
 
-    for (let i = 0; i < n.length; i++) {
+    for (let i = 0; i < number.length; i++) {
         // console.log(n[i]);
-        result += n[i] * (2**i);
+        result += number[i] * (2**i);
     }
 
     return result;
@@ -3051,3 +3051,15 @@ function sortBubble(arr) {
 
 sortBubble(array4);
 console.log(array4);
+
+let a = "asdasdasd";
+let b = "dsadsadsa";
+
+for(let ch of a){
+    let counter = 0;
+    for(let ch2 of a){
+        if(ch === ch2){
+            counter++;
+        }
+    }    
+}

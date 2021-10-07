@@ -1,0 +1,412 @@
+'use strict';
+
+/*Задания*/
+
+/*(((1))) Фибоначчи*/
+
+// Рекурсия Фибоначчи
+let array = [];
+
+function fibonacci(number) {
+    if (number < 2) {
+        return array[number] = number;
+    } else {
+        return array[number] = (fibonacci(number - 1) + fibonacci(number - 2));
+    }
+}
+  
+console.log(fibonacci(5));
+
+console.log(array);
+
+// Мемоизация Фибоначчи
+let fibonacciMemo = (function() {
+    let memo = {};
+
+    return function fibonacci(number) {
+        let value;
+        
+        if (number in memo) {
+            value = memo[number];
+        } else if (number < 2) {
+            value = number;
+        }
+        else {
+            value = fibonacci(number - 1) + fibonacci(number - 2);
+            memo[number] = value;
+        }
+
+        return value;
+    };
+  
+})();
+
+let inputFibonacciNumber = fibonacciMemo(3);
+
+console.log(inputFibonacciNumber);
+
+// Иттерируемый объект
+let fibonacciObject = {
+    fn1: 0,
+    fn2: 1,
+    fibonacci: function* (){
+        let fn1 = this.fn1,
+            fn2 = this.fn2;
+
+        while (true){
+            let current = fn1;
+            fn1 = fn2;
+            fn2 += current;
+            yield current;
+            // if (reset){
+            //     fn1 = 0;
+            //     fn2 = 1;
+            // }
+        }
+    }
+};
+
+let fibonacciNew = fibonacciObject.fibonacci();
+
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+console.log(fibonacciNew.next().value);
+
+/*(((2))) Площади и периметры */
+
+// Triangle
+function trianglePerimeter(a, b, c) {
+    let p = a + b + c;
+    return p;
+}
+
+console.log(trianglePerimeter(15, 20, 20));
+
+class TrianglePerimeter {
+    constructor(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.perimeterСalculating = function() {
+            let p = this.a + this.b + this.c;
+            return p;
+        };
+    }
+}
+
+const newTrianglePerimeter = new TrianglePerimeter(15, 15, 15);
+
+console.log(newTrianglePerimeter.perimeterСalculating());
+
+function triangleSquare(a, h) {
+    let s = 0.5 * (a * h);
+    return s;
+}
+
+console.log(triangleSquare(15, 20));
+
+class TriangleSquare {
+    constructor(a, h) {
+        this.a = a;
+        this.h = h;
+        this.squareСalculating = function() {
+            let s = 0.5 * (this.a * this.h);
+            return s;
+        };
+    }
+}
+
+const newTriangleSquare = new TriangleSquare(15, 20);
+
+console.log(newTriangleSquare.squareСalculating());
+
+// Rectangle
+function rectanglePerimeter(a, b) {
+    let p = 2 * (a + b);
+    return p;
+}
+
+console.log(rectanglePerimeter(15, 20));
+
+class RectanglePerimeter {
+    constructor(a, b) {
+        this.a = a;
+        this.b = b;
+        this.perimeterСalculating = function() {
+            let p = 2 * (this.a + this.b);
+            return p;
+        };
+    }
+}
+
+const newRectanglePerimeter = new RectanglePerimeter(15, 20);
+
+console.log(newRectanglePerimeter.perimeterСalculating());
+
+function rectangleSquare(a, b) {
+    let s = a * b;
+    return s;
+}
+
+console.log(rectangleSquare(15, 20));
+
+class RectangleSquare {
+    constructor(a, b) {
+        this.a = a;
+        this.b = b;
+        this.SquareСalculating = function() {
+            let s = (this.a * this.b);
+            return s;
+        };
+    }
+}
+
+const newRectangleSquare = new RectangleSquare(15, 20);
+
+console.log(newRectangleSquare.SquareСalculating());
+
+// circle
+function circlePerimeter(r) {
+    let pi = 3.14,
+        p = 2 * pi * r;
+    return p;
+}
+
+console.log(circlePerimeter(15));
+
+class CirclePerimeter {
+    constructor(r) {
+        this.r = r;
+        this.perimeterСalculating = function() {
+            let pi = 3.14,
+                p = 2 * pi * this.r;
+            return p;
+        };
+    }
+}
+
+const newCirclePerimeter = new CirclePerimeter(15);
+
+console.log(newCirclePerimeter.perimeterСalculating());
+
+function circleSquare(r) {
+    let pi = 3.14,
+        s = pi * (r**2);
+    return s;
+}
+
+console.log(circleSquare(15));
+
+class CircleSquare {
+    constructor(r) {
+        this.r = r;
+        this.perimeterСalculating = function() {
+            let pi = 3.14,
+                p = pi * (this.r**2);
+            return p;
+        };
+    }
+}
+
+const newCircleSquare = new CircleSquare(15);
+
+console.log(newCircleSquare.perimeterСalculating());
+
+/*(((4)))Из 10 в 2 и наоборот*/
+
+// decToBin
+function decToBin(number) {
+    let decNumber = '';
+    
+    while (number > 0) {
+        decNumber = ('' + (number % 2)) + decNumber;
+        if ((number % 2) === 1) {
+            number = ((number - 1) / 2);
+        } else {
+            number = number / 2;
+        }
+    }
+
+    return decNumber;
+}
+
+console.log(decToBin(18));
+
+// binToDec
+function binToDec(number) {
+    let result = 0;
+
+    number = '' + number;
+
+    function reverse(string) {
+        let reverseString = '';
+
+        for (let i = string.length - 1; i >= 0; i--) {
+            reverseString += string[i];
+        }
+
+        return reverseString;
+    }
+    
+    number = (reverse(number));
+
+    for (let i = 0; i < number.length; i++) {
+        result += number[i] * (2**i);
+    }
+
+    return result;
+}
+
+console.log(binToDec(110));
+
+/*(((5))) Факториал*/
+
+// Рекурсия факториал
+function factorialTern(num) {
+    return (num < 0) ? console.log('Error') : (num === 0) ? 1 : num * factorialTern(num - 1);
+}
+
+console.log(factorialTern(4));
+
+// Мемоизация Факториал
+let factorialMemo = (function() {
+    let memo = {};
+  
+    return function f(number) {
+        let value;
+
+        if (number in memo) {
+            value = memo[number];
+        } else if (number === 1) {
+            value = 1;
+        }
+        else {
+            value = number * f(number - 1);
+            memo[number] = value;
+        }
+  
+        return value;
+    };
+  
+})();
+
+let factorialResult = factorialMemo(3);
+
+console.log(factorialResult);
+
+/*(((6))) Матрица 1*/
+
+// Транспонировать матрицу
+let matrix = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
+
+function transpose(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < i; j++) {
+            const temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+}
+
+transpose(matrix);
+
+console.log(matrix);
+
+// Сложить две матрицы
+let matrixSum1 = [
+    [1,2,3],
+    [1,2,3],
+    [1,2,3],
+];
+
+let matrixSum2 = [
+    [4,5,6],
+    [4,5,6],
+    [4,5,6],
+];
+
+function SumMatrix(matrix1, matrix2) { 
+    let matrixSum = [];
+    
+    var m = matrix1.length, n = matrix1[0].length;
+    for (var i = 0; i < m; i++) {
+        matrixSum[i] = [];
+        for (var j = 0; j < n; j++) {
+            matrixSum[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+
+    return matrixSum;
+}
+
+console.log(SumMatrix(matrixSum1, matrixSum2));
+
+/*(((9))) Filter, map, reduce, foreach */
+
+// filter
+const arrayFilter = [45, {a: 7}, 69, 'ads', {b: 17}, 'bbc'];
+
+function someFilter(arr, callback) {
+    let result = [];
+    let counter = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if(callback(arr[i])){
+            result[counter] = arr[i];
+            counter++;
+        }
+    }
+
+    return result;
+}
+
+console.log(someFilter(arrayFilter, value => typeof(value) === 'object'));
+
+// map
+let arrayMap = [2,4,6,8,8,8,2,24];
+
+function map(arr, callback){
+    let result = [];
+    let counter = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        result[counter] = (callback(arr[i]));
+        counter++;
+    }
+
+    return result;
+}
+
+console.log(map(arrayMap, (value) => value * 3));
+
+// reduce 
+const arrayReduce = [4, 5, 1, 3, 2, 6];
+
+function reduce(arr, callback, initial) {
+    let result = initial || 0;
+
+    for(let i = 0; i < arr.length; i++) {
+        result = callback(result, arr[i]);
+    }
+
+    return result;
+}
+
+console.log(reduce(arrayReduce, (sum, nextNum) => (sum + nextNum), 12));
+
+// forEach
+let arrayForEach = [2,4,6,7,8,5,8,8,9,2,1,24];
+
+function forEach(arr, callback) {
+    for (let i = 0; i < arr.length; i++) {
+        callback(arr[i], i, arr);
+    }
+}
+
+forEach(arrayForEach, (value, number, array) => console.log(`№${number + 1} имеет значение ${value} из массива ${array}`));
