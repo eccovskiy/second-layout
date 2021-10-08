@@ -337,9 +337,9 @@ let matrix = [
 ];
 
 function matrixTranspose(matrix) {
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < i; j++) {
-            const temp = matrix[i][j];
+    for(let i = 0; i < matrix.length; i++) {
+        for(let j = 0; j < i; j++) {
+            let temp = matrix[i][j];
             matrix[i][j] = matrix[j][i];
             matrix[j][i] = temp;
         }
@@ -364,12 +364,13 @@ let matrixSum2 = [
 ];
 
 function matrixSum(matrix1, matrix2) { 
-    let matrixSum = [];
-    
-    var m = matrix1.length, n = matrix1[0].length;
-    for (var i = 0; i < m; i++) {
+    let matrixSum = [],
+        m = matrix1.length,
+        n = matrix1[0].length;
+
+    for(let i = 0; i < m; i++) {
         matrixSum[i] = [];
-        for (var j = 0; j < n; j++) {
+        for(let j = 0; j < n; j++) {
             matrixSum[i][j] = matrix1[i][j] + matrix2[i][j];
         }
     }
