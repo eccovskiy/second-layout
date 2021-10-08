@@ -1836,6 +1836,35 @@ console.log(fibonacciNew.next().value);
 console.log(fibonacciNew.next().value);
 console.log(fibonacciNew.next().value);
 
+let objectFibonacci = {
+    a: 0,
+    b: 1,
+  
+    [Symbol.iterator]() {
+        return {
+            next: () => {
+                const c = this.a + this.b;
+                this.a = this.b;
+                this.b = c;
+                return {
+                    value: this.b,
+                    done: false,
+                };
+            },
+        };
+    }
+};
+  
+for (const n of objectFibonacci) {
+    console.log(n);
+  
+    if (n > 5) {
+        break;
+    }
+}
+
+
+
 let fibonacciObject2 = {
     fn1: 0,
     fn2: 1,
@@ -1939,8 +1968,7 @@ console.log(fibShort(5));
 // Triangle
 
 function trianglePerimeter(a, b, c) {
-    let p = a + b + c;
-    return p;
+    return a + b + c;
 }
 
 console.log(trianglePerimeter(15, 20, 20));
@@ -1951,8 +1979,7 @@ class TrianglePerimeter {
         this.b = b;
         this.c = c;
         this.perimeterСalculating = function() {
-            let p = this.a + this.b + this.c;
-            return p;
+            return this.a + this.b + this.c;
         };
     }
 }
@@ -1962,8 +1989,7 @@ const newTrianglePerimeter = new TrianglePerimeter(15, 15, 15);
 console.log(newTrianglePerimeter.perimeterСalculating());
 
 function triangleSquare(a, h) {
-    let s = 0.5 * (a * h);
-    return s;
+    return 0.5 * (a * h);
 }
 
 console.log(triangleSquare(15, 20));
@@ -1973,8 +1999,7 @@ class TriangleSquare {
         this.a = a;
         this.h = h;
         this.squareСalculating = function() {
-            let s = 0.5 * (this.a * this.h);
-            return s;
+            return 0.5 * (this.a * this.h);
         };
     }
 }
@@ -1984,10 +2009,8 @@ const newTriangleSquare = new TriangleSquare(15, 20);
 console.log(newTriangleSquare.squareСalculating());
 
 // Rectangle
-
 function rectanglePerimeter(a, b) {
-    let p = 2 * (a + b);
-    return p;
+    return 2 * (a + b);
 }
 
 console.log(rectanglePerimeter(15, 20));
@@ -1997,8 +2020,7 @@ class RectanglePerimeter {
         this.a = a;
         this.b = b;
         this.perimeterСalculating = function() {
-            let p = 2 * (this.a + this.b);
-            return p;
+            return 2 * (this.a + this.b);
         };
     }
 }
@@ -2008,8 +2030,7 @@ const newRectanglePerimeter = new RectanglePerimeter(15, 20);
 console.log(newRectanglePerimeter.perimeterСalculating());
 
 function rectangleSquare(a, b) {
-    let s = a * b;
-    return s;
+    return a * b;
 }
 
 console.log(rectangleSquare(15, 20));
@@ -2019,8 +2040,7 @@ class RectangleSquare {
         this.a = a;
         this.b = b;
         this.SquareСalculating = function() {
-            let s = (this.a * this.b);
-            return s;
+            return (this.a * this.b);
         };
     }
 }
@@ -2030,11 +2050,10 @@ const newRectangleSquare = new RectangleSquare(15, 20);
 console.log(newRectangleSquare.SquareСalculating());
 
 // circle
-
 function circlePerimeter(r) {
-    let pi = 3.14,
-        p = 2 * pi * r;
-    return p;
+    let pi = 3.14;
+
+    return 2 * pi * r;
 }
 
 console.log(circlePerimeter(15));
@@ -2043,9 +2062,9 @@ class CirclePerimeter {
     constructor(r) {
         this.r = r;
         this.perimeterСalculating = function() {
-            let pi = 3.14,
-                p = 2 * pi * this.r;
-            return p;
+            let pi = 3.14;
+
+            return 2 * pi * this.r;
         };
     }
 }
@@ -2055,9 +2074,9 @@ const newCirclePerimeter = new CirclePerimeter(15);
 console.log(newCirclePerimeter.perimeterСalculating());
 
 function circleSquare(r) {
-    let pi = 3.14,
-        s = pi * (r**2);
-    return s;
+    let pi = 3.14;
+
+    return pi * (r**2);
 }
 
 console.log(circleSquare(15));
@@ -2066,9 +2085,9 @@ class CircleSquare {
     constructor(r) {
         this.r = r;
         this.perimeterСalculating = function() {
-            let pi = 3.14,
-                p = pi * (this.r**2);
-            return p;
+            let pi = 3.14;
+
+            return pi * (this.r**2);
         };
     }
 }

@@ -30,8 +30,7 @@ let fibonacciMemo = (function() {
             value = memo[number];
         } else if (number < 2) {
             value = number;
-        }
-        else {
+        } else {
             value = fibonacci(number - 1) + fibonacci(number - 2);
             memo[number] = value;
         }
@@ -46,46 +45,66 @@ let inputFibonacciNumber = fibonacciMemo(3);
 console.log(inputFibonacciNumber);
 
 // Иттерируемый объект
-let fibonacciObject = {
-    fn1: 0,
-    fn2: 1,
-    fibonacci: function* (){
-        let fn1 = this.fn1,
-            fn2 = this.fn2;
-
-        while (true){
-            let current = fn1;
-            fn1 = fn2;
-            fn2 += current;
-            yield current;
-            // if (reset){
-            //     fn1 = 0;
-            //     fn2 = 1;
-            // }
-        }
-    }
+let objectFibonacci = {
+    prevValue: 0,
+    nextValue: 1,
+    [Symbol.iterator]() {
+        return {
+            next: () => {
+                let currentValue = this.prevValue;
+                this.prevValue = this.nextValue;
+                this.nextValue += currentValue;
+                
+                return {
+                    value: this.nextValue,
+                    done: this.nextValue === 13,
+                };
+            },
+        };
+    },
 };
-
-let fibonacciNew = fibonacciObject.fibonacci();
-
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
-console.log(fibonacciNew.next().value);
+  
+for(let values of objectFibonacci) {
+    console.log(values);
+    // if (values > 5) {
+    //     break;
+    // }
+}
 
 /*(((2))) Площади и периметры */
 
-// Triangle
-function trianglePerimeter(a, b, c) {
-    let p = a + b + c;
-    return p;
-}
+// Функциями
+let figures = {
+    trianglePerimeter(a, b, c) {
+        return a + b + c;
+    },
+    triangleSquare(a, h) {
+        return 0.5 * (a * h);
+    },
+    rectanglePerimeter(a, b) {
+        return 2 * (a + b);
+    },
+    rectangleSquare(a, b) {
+        return a * b;
+    },
+    circlePerimeter(r) {
+        let pi = 3.14;
+    
+        return 2 * pi * r;
+    },
+    circleSquare(r) {
+        let pi = 3.14;
+    
+        return pi * (r**2);
+    },
+};
 
-console.log(trianglePerimeter(15, 20, 20));
+console.log(figures.trianglePerimeter(15, 20, 20));
+console.log(figures.triangleSquare(15, 20));
+console.log(figures.rectanglePerimeter(15, 20));
+console.log(figures.rectangleSquare(15, 20));
+console.log(figures.circlePerimeter(15));
+console.log(figures.circleSquare(15));
 
 class TrianglePerimeter {
     constructor(a, b, c) {
@@ -93,8 +112,7 @@ class TrianglePerimeter {
         this.b = b;
         this.c = c;
         this.perimeterСalculating = function() {
-            let p = this.a + this.b + this.c;
-            return p;
+            return this.a + this.b + this.c;
         };
     }
 }
@@ -103,20 +121,12 @@ const newTrianglePerimeter = new TrianglePerimeter(15, 15, 15);
 
 console.log(newTrianglePerimeter.perimeterСalculating());
 
-function triangleSquare(a, h) {
-    let s = 0.5 * (a * h);
-    return s;
-}
-
-console.log(triangleSquare(15, 20));
-
 class TriangleSquare {
     constructor(a, h) {
         this.a = a;
         this.h = h;
         this.squareСalculating = function() {
-            let s = 0.5 * (this.a * this.h);
-            return s;
+            return 0.5 * (this.a * this.h);
         };
     }
 }
@@ -126,20 +136,13 @@ const newTriangleSquare = new TriangleSquare(15, 20);
 console.log(newTriangleSquare.squareСalculating());
 
 // Rectangle
-function rectanglePerimeter(a, b) {
-    let p = 2 * (a + b);
-    return p;
-}
-
-console.log(rectanglePerimeter(15, 20));
 
 class RectanglePerimeter {
     constructor(a, b) {
         this.a = a;
         this.b = b;
         this.perimeterСalculating = function() {
-            let p = 2 * (this.a + this.b);
-            return p;
+            return 2 * (this.a + this.b);
         };
     }
 }
@@ -148,20 +151,12 @@ const newRectanglePerimeter = new RectanglePerimeter(15, 20);
 
 console.log(newRectanglePerimeter.perimeterСalculating());
 
-function rectangleSquare(a, b) {
-    let s = a * b;
-    return s;
-}
-
-console.log(rectangleSquare(15, 20));
-
 class RectangleSquare {
     constructor(a, b) {
         this.a = a;
         this.b = b;
         this.SquareСalculating = function() {
-            let s = (this.a * this.b);
-            return s;
+            return (this.a * this.b);
         };
     }
 }
@@ -171,21 +166,14 @@ const newRectangleSquare = new RectangleSquare(15, 20);
 console.log(newRectangleSquare.SquareСalculating());
 
 // circle
-function circlePerimeter(r) {
-    let pi = 3.14,
-        p = 2 * pi * r;
-    return p;
-}
-
-console.log(circlePerimeter(15));
 
 class CirclePerimeter {
     constructor(r) {
         this.r = r;
         this.perimeterСalculating = function() {
-            let pi = 3.14,
-                p = 2 * pi * this.r;
-            return p;
+            let pi = 3.14;
+
+            return 2 * pi * this.r;
         };
     }
 }
@@ -194,21 +182,13 @@ const newCirclePerimeter = new CirclePerimeter(15);
 
 console.log(newCirclePerimeter.perimeterСalculating());
 
-function circleSquare(r) {
-    let pi = 3.14,
-        s = pi * (r**2);
-    return s;
-}
-
-console.log(circleSquare(15));
-
 class CircleSquare {
     constructor(r) {
         this.r = r;
         this.perimeterСalculating = function() {
-            let pi = 3.14,
-                p = pi * (this.r**2);
-            return p;
+            let pi = 3.14;
+
+            return pi * (this.r**2);
         };
     }
 }
@@ -232,7 +212,7 @@ function decToBin(number) {
         }
     }
 
-    return decNumber;
+    return +decNumber;
 }
 
 console.log(decToBin(18));
@@ -259,7 +239,7 @@ function binToDec(number) {
         result += number[i] * (2**i);
     }
 
-    return result;
+    return +result;
 }
 
 console.log(binToDec(110));
