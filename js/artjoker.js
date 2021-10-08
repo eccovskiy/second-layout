@@ -66,10 +66,58 @@ let objectFibonacci = {
   
 for(let values of objectFibonacci) {
     console.log(values);
-    // if (values > 5) {
-    //     break;
-    // }
 }
+
+/*(((3))) Массивы*/
+
+// min and max values
+let array = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
+
+let i = 0,
+    minValue = array[0],
+    maxValue = minValue;
+    
+function recursionArray(arr) {    
+    if(i >= (arr.length)){
+        return;
+    } else if (arr[i] < minValue) {
+        minValue = arr[i];
+    } else if (arr[i] > maxValue) {
+        maxValue = arr[i];
+    }
+
+    i++;
+    recursionArray(arr); 
+}
+
+recursionArray(array);
+console.log(`В массиве [${array}], у нас минимальное значение: ${minValue}, максимальное значение: ${maxValue}`);
+
+// zero numbers
+let array = [6, 7, 3, 8, -7, 3, 0, -4, 2, 9];
+
+let i = 0,
+    zeroValues = 0,
+    positiveValues = 0,
+    negativeValues = 0;
+
+function recursionArray(arr) {
+    if(i >= (arr.length)){
+        return;
+    } else if (arr[i] === 0) {
+        zeroValues++;
+    } else if (arr[i] > 0) {
+        positiveValues++;
+    } else if (arr[i] < 0) {
+        negativeValues++;
+    }
+
+    i++;
+    recursionArray(arr); 
+}
+
+recursionArray(array);
+console.log(`Массив [${array}], нулевых: ${zeroValues}, положительных: ${positiveValues}, отрицательных: ${negativeValues}`);
 
 /*(((2))) Площади и периметры */
 
@@ -106,6 +154,8 @@ console.log(figures.rectangleSquare(15, 20));
 console.log(figures.circlePerimeter(15));
 console.log(figures.circleSquare(15));
 
+// Классами
+// triangle
 class TrianglePerimeter {
     constructor(a, b, c) {
         this.a = a;
@@ -136,7 +186,6 @@ const newTriangleSquare = new TriangleSquare(15, 20);
 console.log(newTriangleSquare.squareСalculating());
 
 // Rectangle
-
 class RectanglePerimeter {
     constructor(a, b) {
         this.a = a;
@@ -166,7 +215,6 @@ const newRectangleSquare = new RectangleSquare(15, 20);
 console.log(newRectangleSquare.SquareСalculating());
 
 // circle
-
 class CirclePerimeter {
     constructor(r) {
         this.r = r;
@@ -197,7 +245,7 @@ const newCircleSquare = new CircleSquare(15);
 
 console.log(newCircleSquare.perimeterСalculating());
 
-/*(((4)))Из 10 в 2 и наоборот*/
+/*(((4)))Из 10-й в 2-ю и наоборот*/
 
 // decToBin
 function decToBin(number) {
@@ -247,11 +295,11 @@ console.log(binToDec(110));
 /*(((5))) Факториал*/
 
 // Рекурсия факториал
-function factorialTern(num) {
-    return (num < 0) ? console.log('Error') : (num === 0) ? 1 : num * factorialTern(num - 1);
+function factorial(number) {
+    return (number < 0) ? console.log('Error') : (number === 0) ? 1 : number * factorial(number - 1);
 }
 
-console.log(factorialTern(4));
+console.log(factorial(4));
 
 // Мемоизация Факториал
 let factorialMemo = (function() {
@@ -282,9 +330,13 @@ console.log(factorialResult);
 /*(((6))) Матрица 1*/
 
 // Транспонировать матрицу
-let matrix = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
+let matrix = [
+    [1, 2, 3],
+    [1, 2, 3],
+    [1, 2, 3]
+];
 
-function transpose(matrix) {
+function matrixTranspose(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < i; j++) {
             const temp = matrix[i][j];
@@ -294,7 +346,7 @@ function transpose(matrix) {
     }
 }
 
-transpose(matrix);
+matrixTranspose(matrix);
 
 console.log(matrix);
 
@@ -302,16 +354,16 @@ console.log(matrix);
 let matrixSum1 = [
     [1,2,3],
     [1,2,3],
-    [1,2,3],
+    [1,2,3]
 ];
 
 let matrixSum2 = [
     [4,5,6],
     [4,5,6],
-    [4,5,6],
+    [4,5,6]
 ];
 
-function SumMatrix(matrix1, matrix2) { 
+function matrixSum(matrix1, matrix2) { 
     let matrixSum = [];
     
     var m = matrix1.length, n = matrix1[0].length;
@@ -325,7 +377,7 @@ function SumMatrix(matrix1, matrix2) {
     return matrixSum;
 }
 
-console.log(SumMatrix(matrixSum1, matrixSum2));
+console.log(matrixSum(matrixSum1, matrixSum2));
 
 /*(((9))) Filter, map, reduce, foreach */
 
@@ -333,13 +385,13 @@ console.log(SumMatrix(matrixSum1, matrixSum2));
 const arrayFilter = [45, {a: 7}, 69, 'ads', {b: 17}, 'bbc'];
 
 function someFilter(arr, callback) {
-    let result = [];
-    let counter = 0;
+    let result = [],
+        index = 0;
 
     for (let i = 0; i < arr.length; i++) {
         if(callback(arr[i])){
-            result[counter] = arr[i];
-            counter++;
+            result[index] = arr[i];
+            index++;
         }
     }
 
@@ -352,12 +404,12 @@ console.log(someFilter(arrayFilter, value => typeof(value) === 'object'));
 let arrayMap = [2,4,6,8,8,8,2,24];
 
 function map(arr, callback){
-    let result = [];
-    let counter = 0;
+    let result = [],
+        index = 0;
 
     for (let i = 0; i < arr.length; i++) {
-        result[counter] = (callback(arr[i]));
-        counter++;
+        result[index] = (callback(arr[i]));
+        index++;
     }
 
     return result;

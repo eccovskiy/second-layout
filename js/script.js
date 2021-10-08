@@ -2165,7 +2165,7 @@ function decToBin(number) {
         // n = Math.trunc(n);
     }
 
-    return decNumber;
+    return +decNumber;
 }
 
 console.log(decToBin(18));
@@ -2195,7 +2195,7 @@ function binToDec(number) {
         result += number[i] * (2**i);
     }
 
-    return result;
+    return +result;
 }
 
 console.log(binToDec(110));
